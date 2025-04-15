@@ -1,0 +1,940 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background-image: linear-gradient(to right, #fbc2eb 0%, #cb8cd1 100%);
+}
+
+header {
+  position: fixed;
+  width: 100vw;
+  z-index: 999;
+}
+
+.showAllGrid,
+.showOneGrid,
+.showCartGrid,
+.showCheckoutForm {
+  max-width: 80rem;
+  margin: auto;
+  margin-top: 6.25rem;
+}
+
+/* Navigering start */
+.navbar {
+  color: azure;
+  padding: 1.2rem 1rem;
+  background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+#title {
+  font-weight: bold;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.navLinks {
+  display: none;
+  position: absolute;
+  right: 0px;
+  width: 100%;
+  top: 3.875rem;
+  z-index: 999;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+  background: rgba(191, 157, 196, 0.822);
+  font-weight: 600;
+}
+
+
+.navLinks div:hover {
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.hamburgerBasket {
+  display: inline-flex;
+}
+
+.hamburgerBasket>div {
+  margin-left: 2rem;
+  cursor: pointer;
+}
+
+/* .showMenu läggs till på .navLinks genom JS-kommando och skriver över "display:none" ovan med "display:flex" - vilket visar menyn "under" nav-menyn */
+.showMenu .navLinks {
+  display: flex;
+}
+
+.fullBasket {
+  color: #63E6BE;
+}
+
+.fa:hover {
+  font-size: 1.4rem;
+}
+
+#cart>span {
+  margin-top: 0.5rem;
+}
+
+/* Navigering slut */
+
+#emptyCart {
+  width: 80%;
+  margin: 0 auto;
+  margin-bottom: 16rem;
+  padding: 2rem 5rem;
+}
+
+#emptyCart:hover {
+  transform: none;
+}
+
+.emptyCart>.card-body {
+  margin: 2rem;
+}
+
+.cart {
+  padding-right: 0.125rem;
+}
+
+.cart>img {
+  height: 2.5rem;
+  width: 2.5rem;
+}
+
+/* Visar X antal produkter styling */
+#product-count {
+  position: relative;
+  top: 6.25rem;
+  right: 1rem;
+  text-align: right;
+  color: azure;
+  font-weight: 400;
+}
+
+
+
+footer {
+  background-color: rgba(255, 255, 255, 0.486);
+  height: 15rem;
+  margin-top: 8rem;
+}
+
+/*******************************/
+/** styling för alla produkter */
+/*******************************/
+.showAllGrid {
+  padding: 0;
+}
+
+/* En liten styling till korten */
+.showAllGrid .card {
+  border: 0.0625rem solid #ddd;
+  border-radius: 0.625rem;
+  box-shadow: 0px 0.125rem 0.5rem rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.showOneGrid .imageContainer {
+  border: 0.1em solid #ddd;
+}
+
+.showOneGrid .detailsContainer {
+  border: 0.1em solid #ddd;
+}
+
+/**********************/
+/** styling på "card" */
+/**********************/
+
+.card {
+  background: #ffffff;
+  border: 0.0625rem solid #ddd;
+  border-radius: 0.9375rem;
+  box-shadow: 0px 0.25rem 0.625rem rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 0.375rem 0.9375rem rgba(0, 0, 0, 0.2);
+}
+
+.card-img-top {
+  border-top-left-radius: 0.9375rem;
+  border-top-right-radius: 0.9375rem;
+  width: 100%;
+  height: auto;
+}
+
+.card-body {
+  padding: 1rem;
+}
+
+.card-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.card-text {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 1rem;
+}
+
+.shopbtn2 {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.cardContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+  gap: 20px;
+  width: 100%;
+}
+
+.cardContainer>div {
+  flex-basis: 19.0625rem;
+  max-width: 19.0625rem;
+  flex-grow: 1;
+}
+
+img {
+  width: 100%;
+}
+
+/***************************************/
+/** Stylad knapp för renderAllProducts */
+/***************************************/
+
+.all-products-btn {
+  font-size: 0.9rem;
+  padding: 0.6rem 1.2rem;
+  border-radius: 3.125rem;
+  background: linear-gradient(135deg, #3498db, #2c81ba);
+  color: white;
+  border: none;
+  font-weight: bold;
+  letter-spacing: 1px;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.all-products-btn::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300%;
+  height: 300%;
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.4s ease;
+}
+
+.all-products-btn:hover {
+  background: linear-gradient(135deg, #2c81ba, #2573a3);
+  box-shadow: 0 0.375rem 0.75rem rgba(0, 0, 0, 0.3);
+  transform: translateY(-2px);
+}
+
+.all-products-btn:hover::before {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.all-products-btn:active {
+  transform: translateY(0.125rem);
+  box-shadow: 0 0.1875rem 0.375rem rgba(0, 0, 0, 0.2);
+}
+
+.btn-danger {
+  background: linear-gradient(135deg, #bb2942, #a3254b);
+  transition: none;
+}
+
+.btn-danger:hover {
+  background: linear-gradient(135deg, #bb2942, #a3254b);
+  transform: none;
+  box-shadow: none;
+  transition: none;
+}
+
+/********************************/
+/** styling för enskild produkt */
+/********************************/
+
+.showOneGrid {
+  padding: 2rem;
+}
+
+.showOneGrid>.card {
+  background: linear-gradient(to right, #fbc2eb 0%, #cb8cd1 100%);
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  transition: none;
+  display: block;
+}
+
+.showOneGrid>.card:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+.imageContainer {
+  display: flex;
+  width: 100%;
+
+  border: 0;
+  border-radius: 0.3125rem;
+}
+
+.detailsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  background-color: #FFFEFA;
+  border: 0.0625rem solid black;
+  border-radius: 0.3125rem;
+  padding: 0.9375rem;
+  margin-top: 1.875rem;
+}
+
+/***********************************/
+/** Stylad knapp för renderProduct */
+/***********************************/
+
+.single-product-btn {
+  font-size: 1rem;
+  padding: 0.7rem 1.5rem;
+  border-radius: 3.125rem;
+  background: linear-gradient(135deg, #28a745, #218838);
+  color: white;
+  border: none;
+  font-weight: bold;
+  letter-spacing: 0.0625rem;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.single-product-btn::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300%;
+  height: 300%;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.4s ease;
+}
+
+.single-product-btn:hover {
+  background: linear-gradient(135deg, #218838, #1e7e34);
+  box-shadow: 0 0.375rem 0.75rem rgba(0, 0, 0, 0.3);
+  transform: translateY(-2px);
+}
+
+.single-product-btn:hover::before {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.single-product-btn:active {
+  transform: translateY(0.125rem);
+  box-shadow: 0 0.1875rem 0.375rem rgba(0, 0, 0, 0.2);
+}
+
+/*********************/
+/** styling för cart */
+/*********************/
+
+.cartItem,
+.totalDescription {
+  margin: 0.9375rem;
+}
+
+.showCartGrid>.totalDescription {
+  height: 18.75rem;
+  /* Ställer in en fast höjd */
+}
+
+.cartProduct>div {
+  background-color: white;
+  gap: 1.25rem;
+  padding: 1.25rem;
+  border-radius: 0.9375rem;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+  font-family: 'Arial', sans-serif;
+  color: #333;
+}
+
+.cartProduct .cartItem .detailText h5 {
+  font-size: 1.2rem;
+  margin-bottom: 0.3125rem;
+  font-weight: bold;
+  color: #5e2a55;
+}
+
+.cartProduct .cartItem .detailText p {
+  font-size: 1rem;
+  margin: 0.125rem 0;
+  color: #555;
+}
+
+.cartProduct .cartItem .amountDetails {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.cartProduct .cartItem .amountDetails button {
+  background: linear-gradient(135deg, #ff7eb3, #ff4e6e);
+  border: none;
+  border-radius: 50%;
+  color: white;
+  width: 2.1875rem;
+  height: 2.1875rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.cartProduct .cartItem .amountDetails button:hover {
+  background: linear-gradient(135deg, #ff4e6e, #ff7eb3);
+  transform: scale(1.1);
+}
+
+.cartProduct .cartItem .amountDetails button:active {
+  transform: scale(1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.cartProduct .cartItem .amountDetails span {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.cartItem {
+  display: flex;
+}
+
+.cartImg {
+  width: 100%;
+}
+
+.detailText {
+  width: 100%;
+  background-color: white;
+}
+
+.cartImg>img {
+  width: 100%;
+}
+
+.amountDetails {
+  display: flex;
+  align-items: end;
+  padding: 0.3125rem;
+}
+
+.amountDetails>span {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  padding-bottom: 0.3125rem;
+}
+
+/*********************************/
+/** styling för totalDescription */
+/*********************************/
+
+.totalDescription {
+  background: white;
+  border-radius: 1.25rem;
+  padding: 1.25rem;
+  margin: 1.25rem auto;
+  width: 100%;
+  max-width: 25rem;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: auto;
+  text-align: center;
+  font-family: 'Comic Sans MS', sans-serif;
+  color: #333;
+}
+
+.totalDescription h5 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #5e2a55;
+}
+
+.totalDescription p {
+  font-size: 1rem;
+  margin: 0.5rem 0;
+  color: #555;
+}
+
+.totalDescription button {
+  background: linear-gradient(135deg, #ff7eb3, #ff4e6e);
+  border: none;
+  border-radius: 1.25rem;
+  color: white;
+  font-size: 1.1rem;
+  padding: 0.625rem 1.25rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  align-self: center;
+  margin-top: auto;
+}
+
+.totalDescription button:hover {
+  background: linear-gradient(135deg, #ff4e6e, #ff7eb3);
+  transform: scale(1.05);
+}
+
+.totalDescription button:active {
+  transform: scale(1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.back-btn {
+  font-size: 1rem;
+  padding: 0.7rem 1.5rem;
+  border-radius: 3.125rem;
+  background: linear-gradient(135deg, #ff7eb3, #ff758c);
+  color: white;
+  border: none;
+  font-weight: bold;
+  letter-spacing: 1px;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.back-btn::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300%;
+  height: 300%;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.4s ease;
+}
+
+.back-btn:hover {
+  background: linear-gradient(135deg, #ff758c, #ff4e6e);
+  box-shadow: 0 0.375rem 0.75rem rgba(0, 0, 0, 0.3);
+  transform: translateY(-2px);
+}
+
+.back-btn:hover::before {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.back-btn:active {
+  transform: translateY(2px);
+  box-shadow: 0 0.1875rem 0.375rem rgba(0, 0, 0, 0.2);
+}
+
+/*****************************/
+/** styling för checkoutform */
+/*****************************/
+
+#checkoutForm {
+  background: white;
+  border-radius: 1.25rem;
+  padding: 1.25rem;
+  width: 100%;
+  margin: auto;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+  font-family: 'Comic Sans MS', sans-serif;
+  color: #444;
+}
+
+#checkoutForm label {
+  font-size: 1rem;
+  color: #5e2a55;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+#checkoutForm input {
+  width: calc(100% - 20px);
+  padding: 0.625rem;
+  margin-bottom: 0.9375rem;
+  border: 0.0625rem solid #ddd;
+  border-radius: 0.625rem;
+  font-size: 1rem;
+}
+
+#checkoutForm input:focus {
+  outline: none;
+  border-color: #ff7eb3;
+  box-shadow: 0 0 0.3125rem rgba(255, 126, 179, 0.5);
+}
+
+#checkoutForm button {
+  background: linear-gradient(135deg, #ff7eb3, #ff4e6e);
+  border: none;
+  border-radius: 1.25rem;
+  color: white;
+  font-size: 1.2rem;
+  padding: 0.625rem 1.25rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: block;
+  margin: auto;
+}
+
+#checkoutForm button:hover {
+  background: linear-gradient(135deg, #ff4e6e, #ff7eb3);
+  transform: scale(1.05);
+}
+
+#checkoutForm button:active {
+  transform: scale(1);
+  box-shadow: 0 0.125rem 0.3125rem rgba(0, 0, 0, 0.2);
+}
+
+
+
+@media screen and (min-width: 576px) {
+
+  #product-count {
+    max-width: 80rem;
+    margin: auto;
+    right: 2rem;
+  }
+
+  .cardContainer {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .cardContainer>div {
+    flex-basis: 15.625rem;
+    max-width: 19.0625rem;
+    flex-grow: 0;
+  }
+
+  #checkoutForm {
+    max-width: 31.25rem;
+    padding: 1.5625rem;
+  }
+
+  #checkoutForm label {
+    font-size: 1.1rem;
+  }
+
+  #checkoutForm input {
+    font-size: 1rem;
+    padding: 0.75rem;
+  }
+
+  #checkoutForm button {
+    font-size: 1.1rem;
+    padding: 0.75rem 1.5625rem;
+  }
+
+  .totalDescription {
+    max-width: 31.25rem;
+    padding: 1.5625rem;
+  }
+
+  .totalDescription h5 {
+    font-size: 1.3rem;
+  }
+
+  .totalDescription p {
+    font-size: 1.1rem;
+  }
+
+  .totalDescription button {
+    font-size: 1.2rem;
+    padding: 0.75rem 1.5625rem;
+  }
+
+  .cartProduct {
+    padding: 1.5625rem;
+    gap: 1.5625rem;
+  }
+
+  .cartProduct .cartItem {
+    gap: 1.25rem;
+    padding: 1.25rem;
+  }
+
+  .cartProduct .cartItem img {
+    width: 7.5rem;
+    height: 7.5rem;
+  }
+
+  .cartProduct .cartItem .detailText h5 {
+    font-size: 1.3rem;
+  }
+
+  .cartProduct .cartItem .detailText p {
+    font-size: 1.1rem;
+  }
+}
+
+@media screen and (min-width: 768px) {
+
+  .cardContainer>div {
+    flex-shrink: 1;
+    flex-grow: 1;
+  }
+
+  #checkoutForm {
+    max-width: 37.5rem;
+    padding: 1.875rem;
+    box-shadow: 0 0.375rem 0.75rem rgba(0, 0, 0, 0.15);
+  }
+
+  #checkoutForm label {
+    font-size: 1.2rem;
+  }
+
+  #checkoutForm input {
+    font-size: 1.1rem;
+    padding: 0.875rem;
+  }
+
+  #checkoutForm button {
+    font-size: 1.2rem;
+    padding: 0.875rem 1.875rem;
+  }
+
+  .totalDescription {
+    max-width: 37.5rem;
+    padding: 1.875rem;
+    box-shadow: 0 0.375rem 0.75rem rgba(0, 0, 0, 0.15);
+  }
+
+  .totalDescription h5 {
+    font-size: 1.4rem;
+  }
+
+  .totalDescription p {
+    font-size: 1.2rem;
+  }
+
+  .totalDescription button {
+    font-size: 1.3rem;
+    padding: 0.875rem 1.875rem;
+  }
+
+  .cartProduct {
+    gap: 1.875rem;
+    padding: 1.875rem;
+    /* box-shadow: 0 0.375rem 0.75rem rgba(0, 0, 0, 0.15); */
+  }
+
+  .cartProduct .cartItem {
+    padding: 1.5625rem;
+  }
+
+  .cartProduct .cartItem img {
+    width: 9.375rem;
+    height: 9.375rem;
+  }
+
+  .cartProduct .cartItem .detailText h5 {
+    font-size: 1.4rem;
+  }
+
+  .cartProduct .cartItem .detailText p {
+    font-size: 1.2rem;
+  }
+}
+
+@media screen and (min-width: 992px) {
+
+  /* Ställer navbar i desktop-mode, radar dem i navbaren istället för i meny under */
+  .navbar {
+    display: flex;
+    flex-wrap: nowrap;
+    padding: 1.2rem 4rem;
+  }
+
+  .navLinks {
+    display: flex;
+    position: relative;
+    top: 0;
+    flex-direction: row;
+    padding: 0 1rem;
+    margin-right: 6rem;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0);
+  }
+
+  .navLinks>div {
+    margin: 0 3rem
+  }
+
+  /* Gömmer "hamburgaren" */
+  .hamburgerMenu {
+    display: none;
+  }
+
+  /* Inställningar för renderProduct i desktop-mode */
+  .showOneGrid>.card {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    row-gap: 0.625rem;
+  }
+
+  .showOneGrid>.card>div {
+    flex-basis: 50%;
+  }
+
+  .detailsContainer {
+    margin-top: 0;
+  }
+
+  /* Inställningar för renderCart i desktop-mode */
+  .showCartGrid {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .showCartGrid>.cartProduct {
+    flex-basis: 60%;
+    padding: 0;
+    gap: 0;
+  }
+
+  .showCartGrid>.totalDescription {
+    flex-basis: 30%;
+  }
+
+  .cartItem {
+    display: flex;
+    flex-direction: row;
+    margin: 0.3125rem;
+  }
+
+  .cartImg {
+    height: 100%;
+  }
+
+  .detailText {
+    padding: 0.9375rem;
+    width: 60%;
+  }
+
+  .totalDescription {
+    margin: 0.3125rem;
+    
+  }
+
+  .amountDetails {
+    padding: 1.25rem;
+  }
+
+  #product-count {
+    max-width: 80rem;
+    margin: auto;
+    right: 0;
+  }
+
+  .showCheckoutForm {
+    display: flex;
+    justify-content: center;
+    gap: 2.1875rem;
+  }
+
+  .showCheckoutForm>.totalDescription {
+    border-radius: 1.25rem;
+    padding: 1.25rem;
+    width: 35rem;
+    height: 25rem;
+  }
+
+  .showCheckoutForm>#checkoutForm {
+    max-width: 43.75rem;
+    padding: 2.5rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2)
+  }
+
+  #checkoutForm label {
+    font-size: 1.3rem;
+  }
+
+  #checkoutForm input {
+    padding: 0.625rem;
+    margin-bottom: 0.9375rem;
+    border: 0.0625rem solid black;
+    border-radius: 0.625rem;
+    font-size: 1rem;
+  }
+
+  #checkoutForm input:focus {
+    outline: none;
+    border-color: #ff7eb3;
+    box-shadow: 0 0 0.3125rem rgba(255, 126, 179, 0.5);
+  }
+
+  #checkoutForm button {
+    background: linear-gradient(135deg, #ff7eb3, #ff4e6e);
+    border: none;
+    border-radius: 20px;
+    color: white;
+    font-size: 1.2rem;
+    padding: 0.625rem 1.25rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: block;
+    margin: auto;
+  }
+
+  #checkoutForm button:hover {
+    background: linear-gradient(135deg, #ff4e6e, #ff7eb3);
+    transform: scale(1.05);
+  }
+
+  #checkoutForm button:active {
+    transform: scale(1);
+    box-shadow: 0 0.125rem 0.3125rem rgba(0, 0, 0, 0.2);
+  }
+
+  /* Footer */
+  #separator {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+}
