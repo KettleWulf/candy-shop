@@ -4,17 +4,17 @@ A colorful e-commerce frontend project for a fictional candy store, built as a t
 
 ---
 
+## Screenshot
+![bortakvall](https://github.com/user-attachments/assets/96cfc335-2fdf-4957-9adb-4d89e36da801)
+
+---
+
 ## Tech Stack
 
 - **Vite + TypeScript** – modern frontend tooling
 - **Vanilla DOM manipulation** – no frameworks used
 - **Modular architecture** – components split across `api.ts`, `main.ts`, and `types.ts`
 - **CSS (custom + Bootstrap)** – responsive styling and layout
-
----
-
-## Screenshot
-![bortakvall](https://github.com/user-attachments/assets/96cfc335-2fdf-4957-9adb-4d89e36da801)
 
 ---
 
