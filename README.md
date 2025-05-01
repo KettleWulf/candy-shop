@@ -1,10 +1,10 @@
-# 🍭 Bortakväll Candy Store
+# Bortakväll Candy Store
 
 A colorful e-commerce frontend project for a fictional candy store, built as a team project. The app lets users browse candy products, add them to a cart, and complete a checkout form.
 
 ---
 
-## 🚀 Tech Stack
+## Tech Stack
 
 - **Vite + TypeScript** – modern frontend tooling
 - **Vanilla DOM manipulation** – no frameworks used
@@ -13,18 +13,23 @@ A colorful e-commerce frontend project for a fictional candy store, built as a t
 
 ---
 
-## 🎨 Features
-
-- 🛒 Add/remove candy items to a dynamic cart
-- 🍬 View detailed info about individual products
-- 🧾 Checkout form with basic validation
-- 📱 Responsive layout (mobile-first with media queries)
-- 🎛️ Filter products by categories (e.g. vegan, palm oil free, gelatin free)
-- 🎨 Fully custom CSS with gradients, hover effects and product cards
+## Screenshot
+![bortakvall](https://github.com/user-attachments/assets/96cfc335-2fdf-4957-9adb-4d89e36da801)
 
 ---
 
-## 🗂️ Project Structure
+## Features
+
+- Add/remove candy items to a dynamic cart
+- View detailed info about individual products
+- Checkout form with basic validation
+- Responsive layout (mobile-first with media queries)
+- Filter products by categories (e.g. vegan, palm oil free, gelatin free)
+- Fully custom CSS with gradients, hover effects and product cards
+
+---
+
+## Project Structure
 
 ```bash
 src/
@@ -37,7 +42,7 @@ src/
 
 ---
 
-## 🧠 What We Learned
+## What We Learned
 Working in a group with version control (Git)
 
 Splitting frontend logic across reusable modules
@@ -50,5 +55,5 @@ Type-checking with TypeScript
 
 ---
 
-## 👨‍👩‍👧‍👦 Team
-This project was created as a collaboration between several students at Front End Developer 24, Medieinstitutet Malmö.
+## Team
+This project was created as a collaboration between me, Patrik Norrgård and Magnus Lundberg.
